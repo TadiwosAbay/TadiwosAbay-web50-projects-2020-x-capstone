@@ -1,0 +1,8 @@
+{% extends "network/layout.html" %}
+{% block body %}
+{% for course in courses %}
+    <a href="{% url 'eachCourse' course.teacher.id %}">{{course.course.course}} by {{course.teacher.first_name}} {{course.teacher.last_name}}</a>
+    <hr>
+{% endfor %}
+<a href="{% url 'logout'  %}">Logout</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "network/layout.html" %}
+
+{% load static %}
+
+{% block body %}
+<button class="btn btn-sm btn-outline-primary" id="student">message from students</button>
+<button class="btn btn-sm btn-outline-primary" id="teacher">message from teachers</button>
+<button class="btn btn-sm btn-outline-primary" id="new">search for new interests/fields and add to the table</button>
+<div id="messages">
+</div>
+<div id="newFields">
+</div>
+
+<a href="{% url 'logout'  %}">Logout</a>
+{% block script %}
+    <script src="{% static 'network/admin.js' %}"></script>
+
+{% endblock %}
+
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+   <h1 class="main-header">{{teach.course}}</h1><br>
+   {% for material in materials %}
+       {{material.materials}}<br>
+  {% endfor %}
+  {% for book in books %}
+       {{book.uploaded}}
+       <a href="{{book.uploaded.url}}" class="btn btn-primary btn-sm" target="_blank"> Download the file</a>
+       <hr>
+  {% endfor %}
+  comments about this course
+  <form action="{% url 'comments' teach.user.id %}" method="post">
+    {% csrf_token %}
+    <textarea name="conten" rows="6" cols="25">
+    </textarea>
+    <br><br>
+   <input type="submit">
+  </form>
+<a href="{% url 'logout'  %}">Logout</a>
+
+{% endblock %}

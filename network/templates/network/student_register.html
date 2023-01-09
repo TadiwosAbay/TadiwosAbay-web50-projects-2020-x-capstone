@@ -1,0 +1,42 @@
+{% extends "network/layout.html" %}
+
+
+{% block body %}
+    <h2>Register</h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'student_register' %}" method="post">
+        {% csrf_token %}
+        {{form.username.label}}
+        {{form.username}}
+        {{form.password1.label}}
+        {{form.password1}}
+        {{form.password2.label}}
+        {{form.password2}}
+        {{form.first_name.label}}
+        {{form.first_name}}
+        {{form.last_name.label}}
+        {{form.last_name}}
+        {{form.interest1.label}}
+        <select class="form-control" id="interest1" name='interest1'>
+        {% for mobile in mobiles%}
+        <option value='{{mobile.interest}}'>{{ mobile.interest}}</option>
+        {% endfor %}
+        </select>
+        {{form.interest2.label}}
+        <select class="form-control" id="interest2" name='interest2'>
+          {% for mobile in mobiles %}
+        <option value='{{mobile.interest}}'>{{ mobile.interest }}</option>
+          {% endfor %}
+        </select>
+        {{form.interest3.label}}
+        <select class="form-control" id="interest3" name='interest3'>
+          {% for mobile in mobiles%}
+        <option value='{{mobile.interest}}'>{{ mobile.interest}}</option>
+         {% endfor %}
+        </select>
+    <input type="submit" name="Create student">
+{% endblock %}

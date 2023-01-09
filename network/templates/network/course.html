@@ -1,0 +1,47 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+<h1 class="main-header"> courses </h1>
+
+<div class="topnav">
+
+
+<a href="{% url 'logout'  %}">Logout</a>
+<a href="{% url 'TeacherRegistered' %}">See registered courses</a>
+<a class="active" href="{% url 'comments' user.id  %}">comments to the admin</a>
+
+<form action="{% url 'search' %}" method="post">
+     {% csrf_token %}
+     <input type="text" placeholder="search..." name="searc">
+     <input type="submit">
+   </form>
+</div>
+{% for course in courses %}
+  <a href="{% url 'eachCourse'  course.user.id  %}" >{{course.course}}</a>
+  by {{course.user}}
+  <p>{{course.description_of_the_course|truncatewords:15}}</p>
+  <hr>
+{% endfor %}
+
+{% for coursder in coursders %}
+  <a href="{% url 'eachCourse'  coursder.user.id  %}" >{{coursder.course}}</a><br>
+  by {{coursder.user}}
+  <p>{{coursder.description_of_the_course|truncatewords:15}}</p>
+  <hr>
+{% endfor %}
+
+{% for cours in courss %}
+  <a href="{% url 'eachCourse'  cours.user.id  %}" >{{cours.course}}</a>
+  by {{cours.user}}
+  <p>{{cours.description_of_the_course|truncatewords:15}}</p>
+  <hr>
+{% endfor %}
+
+
+
+{% block script %}
+    <script src="{% static 'network/course.js' %}"></script>
+
+{% endblock %}
+{% endblock %}

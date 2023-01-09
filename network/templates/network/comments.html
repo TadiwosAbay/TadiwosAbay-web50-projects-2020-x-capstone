@@ -1,0 +1,15 @@
+{% extends "network/layout.html" %}
+
+
+
+{% block body %}
+<form action="{% url 'comments' student.id %}" method="post">
+  {% csrf_token %}
+  <textarea name="conten">
+  </textarea>
+ <input type="submit">
+</form>
+<a href="{% url 'logout'  %}">Logout</a>
+
+
+{% endblock %}

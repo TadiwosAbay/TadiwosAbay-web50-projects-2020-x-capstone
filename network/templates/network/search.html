@@ -1,0 +1,31 @@
+{% extends "network/layout.html" %}
+
+
+
+{% block body %}
+<div class="topnav">
+<form action="{% url 'search' %}"  method="post">
+       {% csrf_token %}
+  <input type="text" placeholder="Search.." name="searc">
+  <input type="submit">
+</form>
+</div>
+<p>Search Results</P>
+{% for exact in exacts %}
+  <a href="{% url 'eachCourse' exact.user.id %}" >{{exact.course}} by {{exact.user.first_name }} {{exact.user.last_name }}</a><br>
+  {{exact.description_of_the_course|truncatewords:15}}
+  <hr>
+{% endfor %}
+
+{% for contain in contains %}
+  <a href="{% url 'eachCourse' contain.user.id %}" >{{contain.course}} by {{contain.user.first_name}}  {{contain.user.last_name }}</a><br>
+  {{contain.description_of_the_course|truncatewords:15}}
+  <hr>
+{% endfor %}
+{% if check %}
+   No results found!! We have notified the admin about the course!
+{% endif %}
+
+<a href="{% url 'logout'  %}">Logout</a>
+
+{% endblock %}

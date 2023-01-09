@@ -1,0 +1,15 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+<h1 class="main-header">{{teach.course}} by {{teach.user.username}}</h1>
+{{teach.description_of_the_course}}
+
+<form action="{% url 'eachCourse' teach.user.id %}" method="post">
+  {% csrf_token %}
+  <button class="btn btn-sm btn-outline-primary">register to this course</button>
+</form>
+<a href="{% url 'logout'  %}">Logout</a>
+
+{% endblock %}
